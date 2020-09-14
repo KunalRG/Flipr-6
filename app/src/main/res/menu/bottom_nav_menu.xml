@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/navigation_contact"
+        android:icon="@drawable/ic_contact"
+        android:title="@string/title_contact" />
+    <item
+        android:id="@+id/navigation_notification"
+        android:icon="@drawable/ic_notification"
+        android:title="@string/title_notification" />
+    <item
+        android:id="@+id/navigation_hospital"
+        android:icon="@drawable/ic_medical"
+        android:title="@string/title_hospital" />
+    <item
+        android:id="@+id/navigation_stat"
+        android:icon="@drawable/ic_poll"
+        android:title="@string/title_stats" />
+</menu>

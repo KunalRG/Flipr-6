@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorAccent"
+    tools:context=".Fragment.NotiFragment">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.cardview.widget.CardView
+                android:layout_margin="20dp"
+                app:cardCornerRadius="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:layout_marginHorizontal="10dp"
+                        android:drawableLeft="@drawable/ic_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent" />
+                    <EditText
+                        android:id="@+id/fn_search"
+                        android:background="@android:color/transparent"
+                        android:hint="Search"
+                        android:paddingHorizontal="5dp"
+                        android:paddingVertical="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_height="50dp">
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    app:cardCornerRadius="20dp"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:visibility="invisible"
+                            android:id="@+id/fn_empty"
+                            android:layout_centerInParent="true"
+                            android:text="Empty"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <ProgressBar
+                            android:id="@+id/fn_progress"
+                            android:visibility="invisible"
+                            android:layout_centerInParent="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/fn_recycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </androidx.recyclerview.widget.RecyclerView>
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+            </RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>
