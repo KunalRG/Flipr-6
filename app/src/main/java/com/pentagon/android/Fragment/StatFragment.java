@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -51,6 +52,7 @@ public class StatFragment extends Fragment implements OnChartGestureListener, On
     private List<Case> mCasesList;
     private LineChart mChart;
     private Spinner mState, mGender, mAge;
+    private TextView mTotal, mDeceased;
     private Button mFilter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -63,6 +65,8 @@ public class StatFragment extends Fragment implements OnChartGestureListener, On
         mState = v.findViewById(R.id.fs_state);
         mGender = v.findViewById(R.id.fs_gender);
         mAge = v.findViewById(R.id.fs_age);
+        mTotal = v.findViewById(R.id.fs_total);
+        mDeceased = v.findViewById(R.id.fs_deceased);
         mFilter = v.findViewById(R.id.fs_filter);
         mFilter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -70,15 +74,32 @@ public class StatFragment extends Fragment implements OnChartGestureListener, On
                 filterActivity();
             }
         });
-        initChart();
+        mTotal.setTextColor(Color.BLUE);
+        mDeceased.setTextColor(Color.GRAY);
+        mTotal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTotal.setTextColor(Color.BLUE);
+                mDeceased.setTextColor(Color.GRAY);
+                initChart(true);
+                jsonParseCases("https://api.jsonbin.io/b/5f5e5a4b7243cd7e823b7764/1");
+            }
+        });
+        mDeceased.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mTotal.setTextColor(Color.GRAY);
+                mDeceased.setTextColor(Color.BLUE);
+                initChart(false);
+                jsonParseCases("https://api.jsonbin.io/b/5f5f184dad23b57ef911d4de");
+            }
+        });
         jsonParseCases("https://api.jsonbin.io/b/5f5e5a4b7243cd7e823b7764/1");
-//        jsonParseCases("https://api.jsonbin.io/b/5f5f184dad23b57ef911d4de");
         return v;
     }
 
     private void filterActivity() {
         String state = mState.getSelectedItem().toString();
-//        String age = mAge.getSelectedItem().toString();
         int age = (int) mAge.getSelectedItemId();
         age = age*10;
         String gender = mGender.getSelectedItem().toString();
@@ -87,7 +108,9 @@ public class StatFragment extends Fragment implements OnChartGestureListener, On
             Case aCase = mCasesList.get(i);
             try {
                 int ageEst = Integer.valueOf(aCase.getAgeEstimate());
-                if (aCase.getState().equals(state) && age - ageEst > 0 && age - ageEst < 10 && aCase.getGender().equals(gender)){
+                if ((aCase.getState().equals(state) || mState.getSelectedItem().toString().equals("State")) &&
+                        ((age - ageEst > 0 && age - ageEst < 10) || mAge.getSelectedItem().toString().equals("Age")) &&
+                        (aCase.getGender().equals(gender) || mGender.getSelectedItem().toString().equals("Gender"))){
                     mFilteredList.add(aCase);
                 }
             }catch (Exception e){
@@ -98,7 +121,7 @@ public class StatFragment extends Fragment implements OnChartGestureListener, On
     }
 
 
-    private void initChart() {
+    private void initChart(boolean isTotal) {
 
         mChart.setOnChartGestureListener(this);
         mChart.setOnChartValueSelectedListener(this);
@@ -109,7 +132,11 @@ public class StatFragment extends Fragment implements OnChartGestureListener, On
         YAxis leftAxis = mChart.getAxisLeft();
         leftAxis.removeAllLimitLines();
 
-        leftAxis.setAxisMaximum(200f);
+        if (isTotal){
+            leftAxis.setAxisMaximum(200f);
+        }else {
+            leftAxis.setAxisMaximum(10f);
+        }
         leftAxis.setAxisMinimum(0f);
         leftAxis.enableGridDashedLine(10f,10f,20f);
         leftAxis.setDrawLimitLinesBehindData(true);

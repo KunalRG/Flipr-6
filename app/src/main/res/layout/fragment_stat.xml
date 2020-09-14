@@ -39,6 +39,26 @@
                             android:layout_height="match_parent"/>
                     </RelativeLayout>
                 </androidx.cardview.widget.CardView>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/fs_total"
+                        android:padding="5dp"
+                        android:text="Total"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:id="@+id/fs_deceased"
+                        android:gravity="center"
+                        android:padding="5dp"
+                        android:text="Deceased"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_margin="10dp"

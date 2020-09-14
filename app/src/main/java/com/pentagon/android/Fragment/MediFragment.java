@@ -142,7 +142,7 @@ public class MediFragment extends Fragment {
         List<College> mFilteredList = new ArrayList<>();
         for (int i=0; i<mCollegeList.size(); i++){
             College college = mCollegeList.get(i);
-            if (college.getState().equals(state) && college.getOwnership().equals(type)){
+            if ((college.getState().equals(state) || state.equals("States")) && (college.getOwnership().equals(type) || type.equals("Types"))){
                 mFilteredList.add(college);
             }
         }
