@@ -1,4 +1,5 @@
 # Co-vrutt
+Download: app/realse/covrutta.apk
 ## Problem Statement:<br> 
 Create a mobile app for Covid-19<br>
 The Mobile Application will be going to include the following sections:
