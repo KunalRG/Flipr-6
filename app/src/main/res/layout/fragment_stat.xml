@@ -103,6 +103,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
+                android:id="@+id/fs_download"
                 android:layout_margin="5dp"
                 android:text="Download"
                 android:textColor="@color/colorLight"

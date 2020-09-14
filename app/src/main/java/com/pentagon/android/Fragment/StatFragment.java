@@ -1,10 +1,16 @@
 package com.pentagon.android.Fragment;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.pdf.PdfDocument;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -15,6 +21,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -40,6 +47,7 @@ import com.pentagon.android.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -207,6 +215,7 @@ public class StatFragment extends Fragment implements OnChartGestureListener, On
         ageAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         mAge.setAdapter(ageAdapter);
     }
+
 
     private void updateChart(List<Case> mList) {
         ArrayList<Entry> values = new ArrayList<>();
